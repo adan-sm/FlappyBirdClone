@@ -93,10 +93,10 @@ namespace FlappyBirdClone
 
             var font = new Font("Ocean Summer.ttf");
 
-            _gameOverText = new Text("Game over!", font);
+            _gameOverText = new Text("Game over !\r\nPress Space to restart", font);
 
             _gameOverText.FillColor = Color.Black;
-            _gameOverText.Position = new SFML.System.Vector2f((WindowWidth - _gameOverText.GetGlobalBounds().Width) / 2, WindowHeight / 2);
+            _gameOverText.Position = new SFML.System.Vector2f((WindowWidth - _gameOverText.GetGlobalBounds().Width) / 2, (WindowHeight - _gameOverText.GetGlobalBounds().Height) / 2);
             _gameOverText.CharacterSize = 48;
         }
 
@@ -104,7 +104,16 @@ namespace FlappyBirdClone
         {
             if (e.Code == Keyboard.Key.Space)
             {
-                _bird.Jump();
+                if(_currentState == State.Playing)
+                {
+                    _bird.Jump();
+                }
+                else
+                {
+                    _bird = new Bird();
+
+                    _currentState = State.Playing;
+                }
             }
         }
 
