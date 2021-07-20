@@ -49,6 +49,7 @@ namespace FlappyBirdClone
 
             while (accumulator >= TimeStep)
             {
+                _columns.FixUpdate();
                 _bird.FixUpdate();
 
                 accumulator -= TimeStep;
@@ -62,11 +63,11 @@ namespace FlappyBirdClone
             _window.DispatchEvents();
             _window.Clear(CornFlowerBlue);
 
-            _ground.Draw(_window);
-
             if(_currentState == State.Playing)
             {
+                _ground.Draw(_window);
                 _bird.Draw(_window);
+                _columns.Draw(_window);
             }
             else
             {
@@ -80,6 +81,7 @@ namespace FlappyBirdClone
         {
             _bird = new Bird();
             _ground = new Ground();
+            _columns = new Columns();
         }
 
         private void InitializeWindow()
@@ -111,6 +113,7 @@ namespace FlappyBirdClone
                 else
                 {
                     _bird = new Bird();
+                    _columns = new Columns();
 
                     _currentState = State.Playing;
                 }
@@ -121,6 +124,7 @@ namespace FlappyBirdClone
         Bird _bird;
         Ground _ground;
         Text _gameOverText;
+        Columns _columns;
 
         State _currentState = State.Playing;
 
