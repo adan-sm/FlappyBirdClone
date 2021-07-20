@@ -1,4 +1,5 @@
 ﻿using SFML.Graphics;
+using SFML.System;
 using System;
 
 namespace FlappyBirdClone
@@ -50,6 +51,8 @@ namespace FlappyBirdClone
             renderWindow.Draw(_bottom);
             renderWindow.Draw(_top);
         }
+
+        public bool Intersect(Vector2f birdPosition, float birdRadius) => SphereAABBTest.Intersect(birdPosition, birdRadius, _bottom.GetGlobalBounds()) || SphereAABBTest.Intersect(birdPosition, birdRadius, _top.GetGlobalBounds());
 
         public int Height { get; }
 

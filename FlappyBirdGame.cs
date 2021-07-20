@@ -26,12 +26,18 @@ namespace FlappyBirdClone
                 if (_currentState == State.Playing)
                 {
                     accumulator = ApplyPhysics(accumulator, stopWatch);
-                }
 
-                if (_bird.Position.Y + Bird.BirdRadius / 2.0f >= _ground.GroundPosition)
-                {
-                    // game over !
-                    _currentState = State.GameOver;
+                    // check bird intersection with ground
+                    if (_bird.Position.Y + Bird.BirdRadius / 2.0f >= _ground.GroundPosition)
+                    {
+                        _currentState = State.GameOver;
+                    }
+
+                    // check bird intersection with any column
+                    if (_columns.IntersectWithBird(_bird))
+                    {
+                        _currentState = State.GameOver;
+                    }
                 }
 
                 Draw();

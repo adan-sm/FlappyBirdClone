@@ -36,6 +36,11 @@ namespace FlappyBirdClone
             }
         }
 
+        public bool IntersectWithBird(Bird bird)
+        {
+            return _columns.Any(c => c.Intersect(bird.Position, Bird.BirdRadius));
+        }
+
         public void Draw(RenderWindow renderWindow)
         {
             _columns.ForEach(c => c.Draw(renderWindow));
