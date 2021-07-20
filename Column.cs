@@ -8,7 +8,6 @@ namespace FlappyBirdClone
     {
         public const float Width = 80.0f;
         public const float Difference = 80.0f;
-        public const float Speed = 50.0f;
         public const float SpaceBetweenColumns = 250.0f;
 
         public Column(int previousSize, int position)
@@ -35,7 +34,7 @@ namespace FlappyBirdClone
 
         public void FixUpdate()
         {
-            Position -= FlappyBirdGame.TimeStep * Speed;
+            Position -= FlappyBirdGame.TimeStep * FlappyBirdGame.ScrollingSpeed;
 
             UpdatePosition();
         }
